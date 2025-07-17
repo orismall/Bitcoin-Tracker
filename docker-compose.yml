@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  # Define the Node.js script service
+  app:
+    # Builds the image in the current directory
+    build: .
+    container_name: bitcoin-tracker-app
+    # Loads environment variables from .env file
+    env_file:
+      - .env          
+    depends_on:
+      - mongo
+    tty: true
+    stdin_open: true
+
+    # Define the MongoDB database service
+  mongo:
+    image: mongo:6
+    container_name: bitcoin-tracker-db
+    # Use a custom MongoDB config file
+    command: ["mongod", "--config", "/etc/mongo/mongod.conf"]
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongod.conf:/etc/mongo/mongod.conf
+      - mongo-data:/data/db
+
+# Declare named volumes for data persistency
+volumes:
+  mongo-data:
