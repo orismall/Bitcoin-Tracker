@@ -12,23 +12,25 @@ A Node.js script that tracks the current Bitcoin price every minute using a REST
 
 ---
 
-## 📁 Project Structure (MVC)
+## 📁 Assignment Structure 
+The assignment was designed with MVC structure, for cleaner code, easy debugging and clear separation of responsibilites.
 
 bitcoin-tracker/
-├── controllers/
-│ └── bitcoinController.js # Handles request logic
-├── services/
-│ └── bitcoinService.js # Handles logic: fetch, calculate, save
-├── models/
-│ └── BitcoinData.js # MongoDB schema
-├── .env # Environment variables
-├── Dockerfile # Node.js container definition
-├── docker-compose.yml # Multi-container setup (app + mongo)
-├── BitcoinTracker.js # Entry point
-└── mongod.conf # MongoDB config file
+├── controllers/             # Handles request logic
+│   └── bitcoinController.js
+├── services/                # Fetch, calculate, and save logic
+│   └── bitcoinService.js
+├── models/                  # MongoDB schema definition
+│   └── BitcoinData.js
+├── .env                     # Environment variables
+├── Dockerfile               # Node.js container definition
+├── docker-compose.yml       # Multi-container setup (Node.js + MongoDB)
+├── BitcoinTracker.js        # Entry point and main script logic
+└── mongod.conf              # Custom MongoDB config
+
 
 ---
 
 🚀 Run with Docker Compose
 
-docker-compose up --build
+    Navigate to the directory and run with: docker-compose up --build
