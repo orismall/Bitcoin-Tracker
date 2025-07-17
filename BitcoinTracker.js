@@ -2,16 +2,23 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const bitcoinController = require('./controllers/bitcoinController.js');
 
+// Connect to MongoDB using connection string stored in .env MONGO_URI
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     let isRunning = false;
-    // Run once immediately
+
+    // First run on startup
     bitcoinController.trackBitcoin();
-    // Set interval to run every 60 seconds
+
+    // Set interval to run every minute
     setInterval(async () => {
-      if (isRunning) return; // guard: skip if previous is still running
+
+      // Check for overlapping executions
+      if (isRunning) return;
       isRunning = true;
       try {
+        
+        // Call bitcoinController trackBitcoin function for the next run
         await bitcoinController.trackBitcoin();
       } catch (err) {
         console.error("Tracking error:", err.message);
