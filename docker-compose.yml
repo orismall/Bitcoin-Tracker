@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: bitcoin-tracker-app
+    env_file:
+      - .env          
+    depends_on:
+      - mongo
+    tty: true
+    stdin_open: true
+
+  mongo:
+    image: mongo:6
+    container_name: bitcoin-tracker-db
+    command: ["mongod", "--config", "/etc/mongo/mongod.conf"]
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongod.conf:/etc/mongo/mongod.conf
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

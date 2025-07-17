@@ -1,0 +1,25 @@
+{
+  "name": "bitcoin-tracker",
+  "version": "1.0.0",
+  "description": "A Node.js script that fetches the current Bitcoin price every minute from an API, calculates the average, min, and max prices, and prints a buy/sell recommendation based on the latest value.",
+  "main": "BitcoinTracker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orismall/Bitcoin-Tracker.git"
+  },
+  "keywords": [],
+  "author": "Ori Small",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/orismall/Bitcoin-Tracker/issues"
+  },
+  "homepage": "https://github.com/orismall/Bitcoin-Tracker#readme",
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "mongoose": "^8.16.4",
+    "node-fetch": "^3.3.2"
+  }
+}
