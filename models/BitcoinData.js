@@ -5,13 +5,8 @@ const BitcoinDataSchema = new mongoose.Schema({
   average: Number,
   timestamp: {
     type: Date,
-    default: () => {
-      const now = new Date();
-      // Adds 3 more hours for Israel local time
-      const utc3 = new Date(now.getTime() + 3 * 60 * 60 * 1000); 
-      return utc3;
-    }
+    default: () => new Date(Date.now() + 3 * 60 * 60 * 1000) // UTC+3
   }
-});
+}, { collection: 'bitcoin data' });
 
 module.exports = mongoose.model('BitcoinData', BitcoinDataSchema);

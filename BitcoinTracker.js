@@ -1,7 +1,7 @@
 BitcoinTracker:
 require('dotenv').config();
 const mongoose = require('mongoose');
-const fetchAndStorePrice = require('./services/BitcoinFetcher');
+const bitcoinController = require('./controllers/bitcoinController.js');
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
@@ -9,8 +9,9 @@ mongoose.connect(process.env.MONGO_URI)
     runTracker();
   })
   .catch(err => console.error("MongoDB connection error:", err));
+
   function runTracker() {
-    fetchAndStorePrice().finally(() => {
-      setTimeout(runTracker, 60 * 1000); 
+    bitcoinController.trackBitcoin().finally(() => {
+      setTimeout(runTracker, 60 * 1000);
     });
 }
